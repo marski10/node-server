@@ -1,0 +1,11 @@
+FROM node:hydrogen-alpine3.19
+
+COPY /src/ /tmp
+
+WORKDIR /tmp/ 
+
+EXPOSE 3000
+
+RUN npm install mysql2
+
+ENTRYPOINT [ "node","appserver.js" ]
