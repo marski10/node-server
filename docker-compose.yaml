@@ -12,6 +12,9 @@ services:
       - 8080:80
     networks:
       - appnode
+    depends_on:
+      node:
+        condition: service_healthy
   
   node:
     build:
@@ -20,8 +23,15 @@ services:
     container_name: node
     tty: true
     restart: always
+    volumes:
+    - ./node/src/:/tmp/node
     networks:
       - appnode
+    healthcheck:
+      test: [CMD,wget,'localhost:3001']
+      interval: 3s
+      timeout: 20s
+      retries: 5
     depends_on:
       mysql:
         condition: service_healthy
@@ -42,7 +52,6 @@ services:
       interval: 3s
       timeout: 14s
       retries: 5
-    
 
 networks:
   appnode:

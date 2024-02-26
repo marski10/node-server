@@ -1,11 +1,15 @@
 FROM node:hydrogen-alpine3.19
 
-COPY /src/ /tmp
+RUN mkdir node
+
+COPY /script/ /tmp
 
 WORKDIR /tmp/ 
 
-EXPOSE 3000
-
 RUN npm install mysql2
 
-ENTRYPOINT [ "node","appserver.js" ]
+RUN chmod 777 activeserver.sh
+
+EXPOSE 3000
+
+ENTRYPOINT ["./activeserver.sh"]
