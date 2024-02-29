@@ -4,8 +4,6 @@ WORKDIR /var/node
 
 RUN chmod +x -R /var/node
 
-RUN npm install -g mysql2
-
 EXPOSE 3000
 
 ENTRYPOINT ["./activeserver.sh"]
