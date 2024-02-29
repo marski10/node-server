@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: nginx:mainline-alpine3.18-perl
+    image: nginx:latest
     container_name: nginx
     tty: true
     restart: always
@@ -13,9 +13,7 @@ services:
     networks:
       - appnode
     depends_on:
-      node:
-        condition: service_healthy
-  
+      - node
   node:
     build:
       context: node
@@ -24,14 +22,10 @@ services:
     tty: true
     restart: always
     volumes:
-    - ./node/src/:/tmp/node
+    - ./node/src/:/var/node
+
     networks:
       - appnode
-    healthcheck:
-      test: [CMD,wget,'localhost:3001']
-      interval: 3s
-      timeout: 20s
-      retries: 5
     depends_on:
       mysql:
         condition: service_healthy

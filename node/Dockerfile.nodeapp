@@ -1,14 +1,10 @@
-FROM node:hydrogen-alpine3.19
+FROM node:latest
 
-RUN mkdir node
+WORKDIR /var/node
 
-COPY /script/ /tmp
+RUN chmod +x -R /var/node
 
-WORKDIR /tmp/ 
-
-RUN npm install mysql2
-
-RUN chmod 777 activeserver.sh
+RUN npm install -g mysql2
 
 EXPOSE 3000
 
