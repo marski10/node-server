@@ -32,6 +32,7 @@ services:
 
   mysql: 
     image: mysql:8.0.36-debian
+    user: mysql 
     container_name: mysql
     tty: true
     command: --default-authentication-plugin=mysql_native_password
