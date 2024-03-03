@@ -1,8 +1,9 @@
-FROM node:latest
+FROM node:20.11.1-slim
 
 WORKDIR /var/node
-
 RUN chmod +x -R /var/node
+
+USER node
 
 EXPOSE 3000
 
