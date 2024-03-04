@@ -4,6 +4,7 @@
 
 Creating node server with mysql database and nginx reverse proxy.
 
+
 **In the docker-compose folder run:** 
 
 ```
